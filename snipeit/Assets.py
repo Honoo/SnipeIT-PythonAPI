@@ -26,35 +26,7 @@ class Assets(object):
     def __init__(self):
         pass
 
-    def get(self, server, token, limit=None, order='asc', offset=None):
-        """Get list of assets
-
-        Arguments:
-            server {string} -- Server URI
-            token {string} -- Token value to be used for accessing the API
-            offset {string} -- Starting offset to get the data
-
-        Keyword Arguments:
-            limit {string} -- Limit the number of data returned by the server (default: {50})
-            order {string} -- Display order of data (asc / desc default:{asc})
-
-        Returns:
-            [string] -- List of assets from the server, in JSON formatted
-        """
-        if limit is not None:
-            self.uri = '/api/v1/hardware?limit={0}&order={1}'.format(
-                str(limit), order)
-        else:
-            self.uri = '/api/v1/hardware?order={0}'.format(order)
-        if offset is not None:
-            self.uri = self.uri + '&offset={0}'.format(str(offset))
-        self.server = server + self.uri
-        headers = {'Authorization': 'Bearer {0}'.format(token)}
-        results = requests.get(self.server, headers=headers)
-        return results.content
-        # return json.dumps(results.json(),indent=4, separators=(',', ':'))
-
-    def createBaseRequest(self, server, base_uri, token, limit=None, offset=None):
+    def createBaseGetRequest(self, server, base_uri, token, limit=None, offset=None):
         """Get list of assets
 
         Arguments:
@@ -81,7 +53,7 @@ class Assets(object):
 
     def get(self, server, token, limit=None, order='asc', offset=None):
         uri = '/api/v1/hardware?order={0}'.format(order)
-        return self.createBaseRequest(server, uri, token, limit, offset)
+        return self.createBaseGetRequest(server, uri, token, limit, offset)
 
     def search(self, server, token, limit=None, order='asc', keyword=None, offset=None):
         """Get list of assets based on search keyword
@@ -95,7 +67,7 @@ class Assets(object):
         uri = '/api/v1/hardware?order={0}'.format(order)
         uri = uri + '&search=' + str(keyword)
 
-        return self.createBaseRequest(server, uri, token, limit, offset)
+        return self.createBaseGetRequest(server, uri, token, limit, offset)
 
     def getAssetsByModel(self, server, token, modelID, limit=None, order='asc', offset=None):
         """Get list of assets with the given model ID
@@ -105,7 +77,7 @@ class Assets(object):
         """
         uri = '/api/v1/hardware?order={0}'.format(order)
         uri = uri + '&model_id=' + str(modelID)
-        return self.createBaseRequest(server, uri, token, limit, offset)
+        return self.createBaseGetRequest(server, uri, token, limit, offset)
 
     def getAssetsByCategory(self, server, token, categoryID, limit=None, order='asc', offset=None):
         """Get list of assets in given category
@@ -115,7 +87,7 @@ class Assets(object):
         """
         uri = '/api/v1/hardware?order={0}'.format(order)
         uri = uri + '&category_id=' + str(categoryID)
-        return self.createBaseRequest(server, uri, token, limit, offset)
+        return self.createBaseGetRequest(server, uri, token, limit, offset)
 
     def getAssetsByManufacturer(self, server, token, manufacturerID, limit=None, order='asc', offset=None):
         """Get list of assets from the given manufacturer
@@ -125,7 +97,7 @@ class Assets(object):
         """
         uri = '/api/v1/hardware?order={0}'.format(order)
         uri = uri + '&manufacturer_id={0}'.format(manufacturerID)
-        return self.createBaseRequest(server, uri, token, limit, offset)
+        return self.createBaseGetRequest(server, uri, token, limit, offset)
 
     def getAssetsByCompany(self, server, token, companyID, limit=None, order='asc', offset=None):
         """Get list of assets from the given company
@@ -135,7 +107,7 @@ class Assets(object):
         """
         uri = '/api/v1/hardware?order={0}'.format(order)
         uri = uri + '&company_id={0}'.format(companyID)
-        return self.createBaseRequest(server, uri, token, limit, offset)
+        return self.createBaseGetRequest(server, uri, token, limit, offset)
 
     def getAssetsByLocation(self, server, token, locationID, limit=None, order='asc', offset=None):
         """Get list of assets from the given location
@@ -145,7 +117,7 @@ class Assets(object):
         """
         uri = '/api/v1/hardware?order={0}'.format(order)
         uri = uri + '&location_id={0}'.format(locationID)
-        return self.createBaseRequest(server, uri, token, limit, offset)
+        return self.createBaseGetRequest(server, uri, token, limit, offset)
 
     def getAssetsByStatus(self, server, token, status, limit=None, order='asc', offset=None):
         """Get list of assets with the given status
@@ -155,7 +127,7 @@ class Assets(object):
         """
         uri = '/api/v1/hardware?order={0}'.format(order)
         uri = uri + '&status={0}'.format(status)
-        return self.createBaseRequest(server, uri, token, limit, offset)
+        return self.createBaseGetRequest(server, uri, token, limit, offset)
 
     def getAssetsByStatusLabel(self, server, token, statusLabelID, limit=None, order='asc', offset=None):
         """Get list of assets
@@ -165,7 +137,7 @@ class Assets(object):
         """
         uri = '/api/v1/hardware?order={0}'.format(order)
         uri = uri + '&status_id={0}'.format(statusLabelID)
-        return self.createBaseRequest(server, uri, token, limit, offset)
+        return self.createBaseGetRequest(server, uri, token, limit, offset)
 
     def getDetailsByID(self, server, token, AssetID):
         """Get asset details by ID
