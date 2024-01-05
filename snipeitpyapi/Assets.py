@@ -41,12 +41,13 @@ class Assets(object):
         Returns:
             [string] -- List of assets from the server, in JSON format
         """
+        uri = base_uri
         if limit is not None:
-            self.uri = base_uri + '&limit={0}'.format(str(limit))
+            uri = base_uri + '&limit={0}'.format(str(limit))
         if offset is not None:
-            self.uri = base_uri + '&offset={0}'.format(str(offset))
+            uri = base_uri + '&offset={0}'.format(str(offset))
 
-        self.server = server + self.uri
+        self.server = server + uri
         headers = {'Authorization': 'Bearer {0}'.format(token)}
         results = requests.get(self.server, headers=headers)
         return results.content
