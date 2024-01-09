@@ -43,15 +43,10 @@ Contributing
 
 Credits
 -------
-Original repository: Cox Automotive Inc. \* https://www.coxautoinc.com/ \* Author: Jared
-Bloomer
+Original repository: Cox Automotive Inc. \* https://www.coxautoinc.com/ \* Author: Jared Bloomer
 
 License
 -------
 
-This Project is currently released under the MIT license. For the latest
-copy of the MIT license please refer to
-https://opensource.org/licenses/MIT
-
-.. |Completed| image:: http://progressed.io/bar/100?title=completed
+This Project is currently released under the MIT license. For the latest copy of the MIT license, please refer to https://opensource.org/licenses/MIT
 
