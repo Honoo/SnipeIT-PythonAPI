@@ -8,7 +8,7 @@ Use this package to interface with the SnipeIT (https://snipeitapp.com/) API dir
 Installation
 ------------
 
-Run the command ``pip install snipeitpyapi``
+Run the command ``pip install snipeitpythonapi``
 
 Usage
 -----
